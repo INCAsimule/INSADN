@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class setSize : MonoBehaviour
+public class DiskSize : MonoBehaviour
 {
 
-    public float radius;
+    public float Radius;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.localScale = new Vector3(radius * 2, this.transform.localScale.y, radius * 2);
+        this.transform.localScale = new Vector3(Radius * 2, this.transform.localScale.y, Radius * 2);
     }
 
     // Update is called once per frame

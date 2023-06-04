@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawnFood : MonoBehaviour
+public class SpawnFood : MonoBehaviour
 {
-    public GameObject foodPrefab;
-    public int foodIniQuantity;
-    public int foodMax;
-    public float foodSpawnFrecquency;   //spawn par seconde
+    public GameObject FoodPrefab;
+    public int FoodIniQuantity;
+    public int FoodMax;
+    public float FoodSpawnFrecquency;   //spawn par seconde
     private Vector3 position;
     private float foodHeight = 1;
     private float spawnRadius;
-    public int foodCounter = 0;
+    public int FoodCounter = 0;
     private float randomX;
     private float randomZ;
+    public string FloorObject = "Tile";
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnRadius = GameObject.Find("Tile").GetComponent<setSize>().radius - 0.5f;
-        for (int i = 0; i < foodIniQuantity; i++)
+        spawnRadius = GameObject.Find(FloorObject).GetComponent<DiskSize>().Radius - 0.5f;
+        for (int i = 0; i < FoodIniQuantity; i++)
         {
             do
             {
@@ -27,10 +28,10 @@ public class spawnFood : MonoBehaviour
                 randomZ = Random.Range(-spawnRadius, spawnRadius);
             } while (randomX * randomX + randomZ * randomZ > spawnRadius * spawnRadius);
             position = new Vector3(randomX, foodHeight, randomZ);
-            Instantiate(foodPrefab, position, new Quaternion(0, 0, 0, 0));
-            foodCounter += 1;
+            Instantiate(FoodPrefab, position, new Quaternion(0, 0, 0, 0));
+            FoodCounter += 1;
         }
-        InvokeRepeating("spawnFoodRepeat", 1 / foodSpawnFrecquency, 1 / foodSpawnFrecquency);
+        InvokeRepeating("spawnFoodRepeat", 1 / FoodSpawnFrecquency, 1 / FoodSpawnFrecquency);
 
     }
 
@@ -42,7 +43,7 @@ public class spawnFood : MonoBehaviour
 
     void spawnFoodRepeat()
     {
-        if (foodCounter < foodMax)
+        if (FoodCounter < FoodMax)
         {
             do
             {
@@ -50,8 +51,8 @@ public class spawnFood : MonoBehaviour
                 randomZ = Random.Range(-spawnRadius, spawnRadius);
             } while (randomX * randomX + randomZ * randomZ > spawnRadius * spawnRadius);
             position = new Vector3(randomX, foodHeight, randomZ);
-            Instantiate(foodPrefab, position, new Quaternion(0, 0, 0, 0));
-            foodCounter += 1;
+            Instantiate(FoodPrefab, position, new Quaternion(0, 0, 0, 0));
+            FoodCounter += 1;
         }
     }
 }
