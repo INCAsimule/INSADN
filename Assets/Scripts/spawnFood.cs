@@ -20,31 +20,37 @@ public class SpawnFood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (FoodPrefab == null)
+        if (this.FoodPrefab == null)
         {
             Debug.LogError("No FoodPrefab set");
         }
 
-        diskSize = GameObject.Find(FloorObject).GetComponent<DiskSize>();
-        if (diskSize == null)
+        this.diskSize = GameObject.Find(this.FloorObject).GetComponent<DiskSize>();
+        if (this.diskSize == null)
         {
             Debug.LogError("Wrong name for FloorObject");
             return;
         }
-        spawnRadius = diskSize.Radius - 0.5f;
+        this.spawnRadius = this.diskSize.Radius - 0.5f;
 
-        for (int i = 0; i < FoodIniQuantity; i++)
+        for (int i = 0; i < this.FoodIniQuantity; i++)
         {
             do
             {
-                randomX = Random.Range(-spawnRadius, spawnRadius);
-                randomZ = Random.Range(-spawnRadius, spawnRadius);
-            } while (randomX * randomX + randomZ * randomZ > spawnRadius * spawnRadius);
-            position = new Vector3(randomX, foodHeight, randomZ);
-            Instantiate(FoodPrefab, position, new Quaternion(0, 0, 0, 0));
-            FoodCounter += 1;
+                this.randomX = Random.Range(-this.spawnRadius, this.spawnRadius);
+                this.randomZ = Random.Range(-this.spawnRadius, this.spawnRadius);
+            } while (this.randomX * this.randomX + this.randomZ * this.randomZ > this.spawnRadius * this.spawnRadius);
+            position = new Vector3(this.randomX, this.foodHeight, this.randomZ);
+            Instantiate(this.FoodPrefab, this.position, new Quaternion(0, 0, 0, 0));
         }
-        InvokeRepeating("spawnFoodRepeat", 1 / FoodSpawnFrecquency, 1 / FoodSpawnFrecquency);
+        this.FoodCounter = this.FoodIniQuantity;
+
+        if (this.FoodSpawnFrecquency == 0)
+        {
+            return;
+        }
+
+        InvokeRepeating("SpawnFoodRepeat", 1 / this.FoodSpawnFrecquency, 1 / this.FoodSpawnFrecquency);
 
     }
 
@@ -54,18 +60,18 @@ public class SpawnFood : MonoBehaviour
         
     }
 
-    void spawnFoodRepeat()
+    void SpawnFoodRepeat()
     {
-        if (FoodCounter < FoodMax)
+        if (this.FoodCounter < this.FoodMax)
         {
             do
             {
-                randomX = Random.Range(-spawnRadius, spawnRadius);
-                randomZ = Random.Range(-spawnRadius, spawnRadius);
-            } while (randomX * randomX + randomZ * randomZ > spawnRadius * spawnRadius);
-            position = new Vector3(randomX, foodHeight, randomZ);
-            Instantiate(FoodPrefab, position, new Quaternion(0, 0, 0, 0));
-            FoodCounter += 1;
+                this.randomX = Random.Range(-this.spawnRadius, this.spawnRadius);
+                this.randomZ = Random.Range(-this.spawnRadius, this.spawnRadius);
+            } while (this.randomX * this.randomX + this.randomZ * this.randomZ > this.spawnRadius * this.spawnRadius);
+            this.position = new Vector3(this.randomX, this.foodHeight, this.randomZ);
+            Instantiate(this.FoodPrefab, this.position, new Quaternion(0, 0, 0, 0));
+            this.FoodCounter += 1;
         }
     }
 }
