@@ -225,7 +225,7 @@ MonoBehaviour:
   FoodPrefab: {fileID: 2917716376872426208, guid: 6dba230dbfa622a46838c49e78461eb8, type: 3}
   FoodIniQuantity: 3
   FoodMax: 10
-  FoodSpawnFrecquency: 0.01
+  FoodSpawnFrecquency: 0.5
   FoodCounter: 0
   FloorObject: Tile
 --- !u!4 &1291283830

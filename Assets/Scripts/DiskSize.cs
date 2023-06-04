@@ -5,7 +5,7 @@ using UnityEngine;
 public class DiskSize : MonoBehaviour
 {
 
-    public float Radius;
+    public float Radius = 10;
 
     // Start is called before the first frame update
     void Start()
