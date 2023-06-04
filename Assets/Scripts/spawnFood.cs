@@ -26,12 +26,11 @@ public class SpawnFood : MonoBehaviour
         }
 
         diskSize = GameObject.Find(FloorObject).GetComponent<DiskSize>();
-
         if (diskSize == null)
         {
             Debug.LogError("Wrong name for FloorObject");
+            return;
         }
-
         spawnRadius = diskSize.Radius - 0.5f;
 
         for (int i = 0; i < FoodIniQuantity; i++)
