@@ -22,14 +22,14 @@ public class SpawnFood : MonoBehaviour
     {
         if (FoodPrefab == null)
         {
-            Debug.Log("No FoodPrefab set");
+            Debug.LogError("No FoodPrefab set");
         }
 
         diskSize = GameObject.Find(FloorObject).GetComponent<DiskSize>();
 
         if (diskSize == null)
         {
-            Debug.Log("Wrong name for FloorObject");
+            Debug.LogError("Wrong name for FloorObject");
         }
 
         spawnRadius = diskSize.Radius - 0.5f;
