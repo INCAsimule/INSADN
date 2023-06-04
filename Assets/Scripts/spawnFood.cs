@@ -16,6 +16,8 @@ public class SpawnFood : MonoBehaviour
     private float randomZ;
     public string FloorObject = "Tile";
     private DiskSize diskSize;
+    private float randomR;
+    private float randomTheta;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +37,10 @@ public class SpawnFood : MonoBehaviour
 
         for (int i = 0; i < this.FoodIniQuantity; i++)
         {
-            do
-            {
-                this.randomX = Random.Range(-this.spawnRadius, this.spawnRadius);
-                this.randomZ = Random.Range(-this.spawnRadius, this.spawnRadius);
-            } while (this.randomX * this.randomX + this.randomZ * this.randomZ > this.spawnRadius * this.spawnRadius);
+            randomR = Random.Range(0, spawnRadius);
+            randomTheta = Random.Range(0, 2 * Mathf.PI);
+            randomX = randomR * Mathf.Cos(randomTheta);
+            randomZ = randomR * Mathf.Sin(randomTheta);
             position = new Vector3(this.randomX, this.foodHeight, this.randomZ);
             Instantiate(this.FoodPrefab, this.position, new Quaternion(0, 0, 0, 0));
         }
