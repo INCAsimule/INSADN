@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnFood : MonoBehaviour
 {
@@ -17,6 +18,14 @@ public class SpawnFood : MonoBehaviour
     private DiskSize diskSize;
     private float randomR;
     private float randomTheta;
+
+    private Vector3 GetSpawPosirion() {
+        this.randomR = Random.Range(0, this.spawnRadius);
+        this.randomTheta = Random.Range(0, 2 * Mathf.PI);
+        this.randomX = this.randomR * Mathf.Cos(this.randomTheta);
+        this.randomZ = this.randomR * Mathf.Sin(this.randomTheta);
+        return new Vector3(this.randomX, this.foodHeight, this.randomZ);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,18 +46,11 @@ public class SpawnFood : MonoBehaviour
         }
         this.spawnRadius = this.diskSize.Radius - 0.5f;
 
-        Vector3 position;
-
 
         for (int i = 0; i < this.FoodIniQuantity; i++)
         {
 
-            this.randomR = Random.Range(0, this.spawnRadius);
-            this.randomTheta = Random.Range(0, 2 * Mathf.PI);
-            this.randomX = this.randomR * Mathf.Cos(this.randomTheta);
-            this.randomZ = this.randomR * Mathf.Sin(this.randomTheta);
-            position = new Vector3(this.randomX, this.foodHeight, this.randomZ);
-            Instantiate(this.FoodPrefab, position, new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawPosirion(), new Quaternion(0, 0, 0, 0));
         }
         this.FoodCounter = this.FoodIniQuantity;
 
@@ -61,25 +63,12 @@ public class SpawnFood : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void SpawnFoodRepeat()
-    {
-        Vector3 position;
+    { 
 
         if (this.FoodCounter < this.FoodMax)
         {
-            do
-            {
-                this.randomX = Random.Range(-this.spawnRadius, this.spawnRadius);
-                this.randomZ = Random.Range(-this.spawnRadius, this.spawnRadius);
-            } while (this.randomX * this.randomX + this.randomZ * this.randomZ > this.spawnRadius * this.spawnRadius);
-            position = new Vector3(this.randomX, this.foodHeight, this.randomZ);
-            Instantiate(this.FoodPrefab, position, new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawPosirion(), new Quaternion(0, 0, 0, 0));
             this.FoodCounter += 1;
         }
     }
