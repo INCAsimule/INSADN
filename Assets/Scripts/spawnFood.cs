@@ -10,7 +10,7 @@ public class spawnFood : MonoBehaviour
     public float foodSpawnFrecquency;   //spawn par seconde
     private Vector3 position;
     private float foodHeight = 1;
-    public float spawnRadius;
+    private float spawnRadius;
     public int foodCounter = 0;
     private float randomX;
     private float randomZ;
@@ -18,6 +18,7 @@ public class spawnFood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnRadius = GameObject.Find("Tile").GetComponent<setSize>().radius - 0.5f;
         for (int i = 0; i < foodIniQuantity; i++)
         {
             do
