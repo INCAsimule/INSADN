@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SpawnFood : MonoBehaviour
+public class SpawnFoods : MonoBehaviour
 {
     public GameObject FoodPrefab;
     public int FoodIniQuantity = 3;
@@ -16,14 +16,15 @@ public class SpawnFood : MonoBehaviour
     private float randomZ;
     public string FloorObject = "Tile";
     private DiskSize diskSize;
-    private float randomR;
+    private float randomR_2;
     private float randomTheta;
 
-    private Vector3 GetSpawPosirion() {
-        this.randomR = Random.Range(0, this.spawnRadius);
+    private Vector3 GetSpawnPosition()
+    {
+        this.randomR_2 = Random.Range(0, this.spawnRadius * this.spawnRadius);
         this.randomTheta = Random.Range(0, 2 * Mathf.PI);
-        this.randomX = this.randomR * Mathf.Cos(this.randomTheta);
-        this.randomZ = this.randomR * Mathf.Sin(this.randomTheta);
+        this.randomX = Mathf.Sqrt(this.randomR_2) * Mathf.Cos(this.randomTheta);
+        this.randomZ = Mathf.Sqrt(this.randomR_2) * Mathf.Sin(this.randomTheta);
         return new Vector3(this.randomX, this.foodHeight, this.randomZ);
     }
 
@@ -50,7 +51,7 @@ public class SpawnFood : MonoBehaviour
         for (int i = 0; i < this.FoodIniQuantity; i++)
         {
 
-            Instantiate(this.FoodPrefab, this.GetSpawPosirion(), new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawnPosition(), new Quaternion(0, 0, 0, 0));
         }
         this.FoodCounter = this.FoodIniQuantity;
 
@@ -64,11 +65,11 @@ public class SpawnFood : MonoBehaviour
     }
 
     void SpawnFoodRepeat()
-    { 
+    {
 
         if (this.FoodCounter < this.FoodMax)
         {
-            Instantiate(this.FoodPrefab, this.GetSpawPosirion(), new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawnPosition(), new Quaternion(0, 0, 0, 0));
             this.FoodCounter += 1;
         }
     }
