@@ -19,9 +19,9 @@ public class SpawnFoods : MonoBehaviour
     private float randomR_2;
     private float randomTheta;
 
-    private Vector3 GetSpawnPosition()
+    public Vector3 GetSpawnPosition(float radius)
     {
-        this.randomR_2 = Random.Range(0, this.spawnRadius * this.spawnRadius);
+        this.randomR_2 = Random.Range(0, radius * radius);
         this.randomTheta = Random.Range(0, 2 * Mathf.PI);
         this.randomX = Mathf.Sqrt(this.randomR_2) * Mathf.Cos(this.randomTheta);
         this.randomZ = Mathf.Sqrt(this.randomR_2) * Mathf.Sin(this.randomTheta);
@@ -51,7 +51,7 @@ public class SpawnFoods : MonoBehaviour
         for (int i = 0; i < this.FoodIniQuantity; i++)
         {
 
-            Instantiate(this.FoodPrefab, this.GetSpawnPosition(), new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawnPosition(this.spawnRadius), new Quaternion(0, 0, 0, 0));
         }
         this.FoodCounter = this.FoodIniQuantity;
 
@@ -69,7 +69,7 @@ public class SpawnFoods : MonoBehaviour
 
         if (this.FoodCounter < this.FoodMax)
         {
-            Instantiate(this.FoodPrefab, this.GetSpawnPosition(), new Quaternion(0, 0, 0, 0));
+            Instantiate(this.FoodPrefab, this.GetSpawnPosition(this.spawnRadius), new Quaternion(0, 0, 0, 0));
             this.FoodCounter += 1;
         }
     }
