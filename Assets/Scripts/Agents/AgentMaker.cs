@@ -25,8 +25,7 @@ public class AgentMaker : MonoBehaviour
     {
         // for each property 50% of chance that the property of the child is of the parent1 and the second half for the second parent
         // To each property mutate the property based on a normal distribution
-		Agent child = gameObject.AddComponent<Agent>();
-
+        Agent child = new Agent();
         var gaussian = new Gaussian();
 
 
