@@ -19,7 +19,7 @@ public partial class Agent : MonoBehaviour
             SetDestinationToMousePosition();
         }
         this.ReproduceUpdate();
-        this.Energy -= Time.deltaTime;
+       // this.Energy -= Time.deltaTime;
         this.Energy = Math.Max(this.Energy, 0.0f);
         if (this.Energy <= 0.0f)
         {

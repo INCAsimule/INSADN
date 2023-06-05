@@ -22,6 +22,11 @@ public partial class Agent : MonoBehaviour
     private NavMeshAgent agent;
     private AgentMaker agentMaker;
 
+    public Agent()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

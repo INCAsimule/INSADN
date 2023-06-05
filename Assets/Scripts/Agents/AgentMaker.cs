@@ -25,7 +25,8 @@ public class AgentMaker : MonoBehaviour
     {
         // for each property 50% of chance that the property of the child is of the parent1 and the second half for the second parent
         // To each property mutate the property based on a normal distribution
-		Agent child = new();
+		Agent child = gameObject.AddComponent<Agent>();
+
         var gaussian = new Gaussian();
 
 
@@ -40,7 +41,6 @@ public class AgentMaker : MonoBehaviour
 
         child.VisionRadius = this.PickRandomParent(parent1, parent2).VisionRadius;
         child.VisionRadius += (float)gaussian.RandomGauss(0.0, this.VisionRadiusSigma);
-
 
         return child;
     }

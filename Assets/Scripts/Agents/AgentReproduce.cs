@@ -43,8 +43,11 @@ public partial class Agent : MonoBehaviour
         if (wantToReproduce)
         {
             this.NextDestination = closestAgent.transform.position;
+            var child = this.agentMaker.Reproduce(this, closestAgent);
+            var entity = Instantiate(child);
+            this.IsWantingReproduce = false;
+            closestAgent.IsWantingReproduce = false;
         }
-
     }
 
     private void ReproduceUpdate()
