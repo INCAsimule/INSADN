@@ -10,7 +10,6 @@ public partial class Agent : MonoBehaviour
     public float MaxEnergy = 100.0f;
     public float MaxHealth = 100.0f;
     public float VisionRadius = 30.0f;
-    public int FertilityRate = 200;
     public string Name = "Unamed";
     public Vector3 NextDestination = new Vector3(0.0f, 0.0f);
 
@@ -21,6 +20,7 @@ public partial class Agent : MonoBehaviour
 
     private TextMesh childTextMesh;
     private NavMeshAgent agent;
+    private AgentMaker agentMaker;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,12 @@ public partial class Agent : MonoBehaviour
 
         this.agent = GetComponent<NavMeshAgent>();
         this.agent.speed = this.MaxSpeed;
+
+        this.agentMaker = GetComponent<AgentMaker>();
+        if (this.agentMaker == null)
+        {
+            Debug.LogError("You have to specify an AgentMaker component if you want to reproduce your agents.");
+        }
 
     }
 

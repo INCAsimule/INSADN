@@ -7,37 +7,7 @@ public partial class Agent : MonoBehaviour
     private float lastReproduceTime = 0.0f;
     public bool IsWantingReproduce = false;
 
-    public void Reproduce(Agent otherAgent)
-    {   
-        if (otherAgent == null)
-        {
-            return;
-        }
 
-        if (this.Energy < this.MaxEnergy*0.8f)
-        {
-            return;
-        }
-        if (otherAgent.Energy < otherAgent.MaxEnergy*0.8f)
-        {
-            return;
-        }
-        this.Energy -= this.MaxEnergy / 2;
-        otherAgent.Energy -= otherAgent.MaxEnergy / 2;
-        var child = Instantiate(this.gameObject, this.transform.position, Quaternion.identity);
-        child.GetComponent<Agent>().Energy = 0;
-        child.GetComponent<Agent>().IsWantingReproduce = false;
-        child.GetComponent<Agent>().lastReproduceTime = Time.time;
-        child.GetComponent<Agent>().FertilityRate = this.FertilityRate;
-        child.GetComponent<Agent>().MaxEnergy = this.MaxEnergy;
-        child.GetComponent<Agent>().Speed = this.Speed;
-        child.GetComponent<Agent>().VisionRadius = this.VisionRadius;
-
-        otherAgent.IsWantingReproduce = false;
-        this.IsWantingReproduce = false;
-        this.lastReproduceTime = Time.time;
-        otherAgent.lastReproduceTime = Time.time;
-}
 
     // look for another Agent to reproduce and if want to reproduce too, reproduce
     private void TryToReproduce()
@@ -73,17 +43,12 @@ public partial class Agent : MonoBehaviour
         if (wantToReproduce)
         {
             this.NextDestination = closestAgent.transform.position;
-            this.Reproduce(closestAgent);
         }
 
     }
 
     private void ReproduceUpdate()
     {
-        if (this.lastReproduceTime + this.FertilityRate < Time.time)
-        {
-            this.IsWantingReproduce = true;
-        }
         if (this.IsWantingReproduce)
         {
             this.TryToReproduce();
