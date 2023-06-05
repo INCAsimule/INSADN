@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class Agent : MonoBehaviour
 {
-    private float lastReproduceTime = 0.0f;
+    public float lastReproduceTime = 0.0f;
     public bool IsWantingReproduce = false;
 
     public void Reproduce(Agent otherAgent)

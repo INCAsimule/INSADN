@@ -14,10 +14,10 @@ public partial class Agent : MonoBehaviour
     public string Name = "Unamed";
     public Vector3 NextDestination = new Vector3(0.0f, 0.0f);
 
-    private float Health;
-    private float Energy;
-    private float Speed;
-    private Color Color;
+    public float Health;
+    public float Energy;
+    public float Speed;
+    public Color Color;
 
     private TextMesh childTextMesh;
     private NavMeshAgent agent;
