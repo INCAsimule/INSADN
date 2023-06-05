@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SpawnFood : MonoBehaviour
+public class SpawnFoods : MonoBehaviour
 {
     public GameObject FoodPrefab;
     public int FoodIniQuantity = 3;
