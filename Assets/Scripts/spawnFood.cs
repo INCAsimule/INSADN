@@ -19,7 +19,8 @@ public class SpawnFood : MonoBehaviour
     private float randomR_2;
     private float randomTheta;
 
-    private Vector3 GetSpawnPosition() {
+    private Vector3 GetSpawnPosition()
+    {
         this.randomR_2 = Random.Range(0, this.spawnRadius * this.spawnRadius);
         this.randomTheta = Random.Range(0, 2 * Mathf.PI);
         this.randomX = Mathf.Sqrt(this.randomR_2) * Mathf.Cos(this.randomTheta);
@@ -64,7 +65,7 @@ public class SpawnFood : MonoBehaviour
     }
 
     void SpawnFoodRepeat()
-    { 
+    {
 
         if (this.FoodCounter < this.FoodMax)
         {
