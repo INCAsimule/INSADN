@@ -321,8 +321,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1291283830}
   - component: {fileID: 1291283831}
+  - component: {fileID: 1291283832}
   m_Layer: 0
-  m_Name: SpawnFood
+  m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,6 +362,32 @@ MonoBehaviour:
   FoodSpawnFrecquency: 0.5
   FoodCounter: 0
   FloorObject: Tile
+--- !u!114 &1291283832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291283828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe1079e6cd29ba4f939369c2a28dc9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AgentIni: 5
+  FloorObject: Tile
+  AgentCounter: 0
+  AgentPrefab: {fileID: 3961030507140403097, guid: e4148f7d5071847e094c1336e339ed84, type: 3}
+  MaxSpeedMin: 4
+  MaxSpeedMax: 8
+  MaxEnergyMin: 100
+  MaxEnergyMax: 200
+  MaxHealthMin: 100
+  MaxHealthMax: 200
+  VisionRadiusMin: 30
+  VisionRadiusMax: 60
+  FertilityRateMin: 200
+  FertilityRateMax: 400
 --- !u!1 &1379455271
 GameObject:
   m_ObjectHideFlags: 0
